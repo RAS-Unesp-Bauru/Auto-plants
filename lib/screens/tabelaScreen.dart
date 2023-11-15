@@ -12,6 +12,7 @@ class TabelaScreen extends StatefulWidget {
 
 class _TabelaPageState extends State<TabelaScreen> {
   List<List<dynamic>> tableData = [];
+  List<DataColumn> columns = [];
 
   @override
   void initState() {
@@ -21,9 +22,25 @@ class _TabelaPageState extends State<TabelaScreen> {
   }
 
   void updateUI(List<List<dynamic>> sensorData) {
+    addNewColumn(widget.field);
     for (int i = 0; i < sensorData.length; i++) {
       addNewRow(sensorData[i]);
     }
+  }
+
+  void addNewColumn(ColumnName) {
+    setState(() {
+      columns.add(DataColumn(
+        label: Text(
+          ColumnName
+        )
+      ))
+      columns.add(DataColumn(
+        label: Text(
+          Time
+        )
+      ))
+    });
   }
 
   void addNewRow(List<dynamic> rowData) {
@@ -42,20 +59,7 @@ class _TabelaPageState extends State<TabelaScreen> {
           child: ListView(
             children: [
               DataTable(
-                columns: const <DataColumn>[
-                  DataColumn(
-                      label: Text(
-                    'T',
-                  )),
-                  DataColumn(
-                      label: Text(
-                    'H',
-                  )),
-                  DataColumn(
-                      label: Text(
-                    'Time',
-                  )),
-                ],
+                columns: columns
                 rows:
                 tableData.map((rowData) {
                   return DataRow(

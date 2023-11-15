@@ -34,6 +34,7 @@ class API {
       aux.add(record['_time']);
       tableData.add(aux);
     });
+    
   print(tableData);
     // for(int i = 0; i < temperature.length; i++) {
     //   List<dynamic> aux = [];
